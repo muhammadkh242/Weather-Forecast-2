@@ -54,7 +54,6 @@ class Current {
   double? temp;
   int? pressure;
   int? humidity;
-  int? uvi;
   int? clouds;
   int? visibility;
   double? windSpeed;
@@ -68,7 +67,6 @@ class Current {
         this.temp,
         this.pressure,
         this.humidity,
-        this.uvi,
         this.clouds,
         this.visibility,
         this.windSpeed,
@@ -82,7 +80,6 @@ class Current {
     temp = json['temp'];
     pressure = json['pressure'];
     humidity = json['humidity'];
-    uvi = json['uvi'];
     clouds = json['clouds'];
     visibility = json['visibility'];
     windSpeed = json['wind_speed'];

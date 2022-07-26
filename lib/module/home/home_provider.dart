@@ -7,7 +7,7 @@ import '../../model/weather_response.dart';
 class HomeProvider extends ChangeNotifier {
   
   final WeatherRepo _weatherRepo = WeatherRepo(DioClient());
-  late WeatherResponse weatherResponse;
+  WeatherResponse weatherResponse = WeatherResponse();
 
   HomeProvider(){
     getCurrentWeather();
