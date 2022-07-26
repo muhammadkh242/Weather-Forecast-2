@@ -1,26 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:weather/network/dio_client.dart';
-import 'package:weather/network/weather_service.dart';
-import 'package:weather/repository/repository.dart';
-
+import 'package:provider/provider.dart';
+import 'package:weather/layout_provider.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // WeatherService().fetchWeather();
-    WeatherRepo weatherRepo = WeatherRepo(DioClient());
+/*    WeatherRepo weatherRepo = WeatherRepo(DioClient());
     weatherRepo.getCurrentWeather().then((value)
     {
-      print(value.timezone);
-    });
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
-        child: Text(
-          "home",
-        ),
-      ),
+      print(value.daily!.length);
+    });*/
+    return ChangeNotifierProvider<LayoutProvider>(
+      create: (context) => LayoutProvider(),
+      child: Consumer<LayoutProvider>(
+          builder: (BuildContext context , layoutProvide, _){
+            return const Center(
+              child: Text(
+                "Home",
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          }
+      )
     );
   }
 }
+/*return Consumer<LayoutProvider>(
+        builder: (BuildContext context , layoutProvide, _){
+          return const Center(
+            child: Text(
+              "Home",
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
+        }
+    );*/
