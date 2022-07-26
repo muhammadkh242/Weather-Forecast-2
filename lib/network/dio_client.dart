@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:weather/model/weather_response.dart';
 import 'package:weather/shared/constants.dart';
+import 'dart:convert';
 
 class DioClient {
   late Dio dio;
@@ -18,9 +20,12 @@ class DioClient {
   }
 
   Future<dynamic> getCurrentWeather() async{
-    Response response = await dio.get(endPoint,queryParameters: queries) ;
-    print(response.data);
+
+    Response response = await dio.get(endPoint, queryParameters: queries);
+    //print(response.data);
     return response.data;
   }
-
+/*
+    Response response = await dio.get(endPoint,queryParameters: queries) ;
+    return response.data;*/
 }
