@@ -118,9 +118,7 @@ class Hourly {
   double? dewPoint;
   int? clouds;
   int? visibility;
-  double? windSpeed;
-  int? windDeg;
-  double? windGust;
+  num? windSpeed;
   List<Weather>? weather;
 
   Hourly(
@@ -132,8 +130,6 @@ class Hourly {
         this.clouds,
         this.visibility,
         this.windSpeed,
-        this.windDeg,
-        this.windGust,
         this.weather,
         });
 
@@ -146,8 +142,6 @@ class Hourly {
     clouds = json['clouds'];
     visibility = json['visibility'];
     windSpeed = json['wind_speed'];
-    windDeg = json['wind_deg'];
-    windGust = json['wind_gust'];
     if (json['weather'] != null) {
       weather = <Weather>[];
       json['weather'].forEach((v) {

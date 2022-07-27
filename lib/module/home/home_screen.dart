@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/layout_provider.dart';
+import 'package:weather/model/weather_response.dart';
+import 'package:weather/module/home/components/home_components.dart';
 import 'package:weather/module/home/home_provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,15 +18,7 @@ class HomeScreen extends StatelessWidget {
           create: (context) => HomeProvider(),
           child: Consumer<HomeProvider>(
             builder: (context, homeProvider, _) {
-              return Center(
-                child: Text(
-                  "${homeProvider.weatherResponse.timezone}",
-                  style: const TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              );
+              return buildHomeScreen(context, homeProvider.weatherResponse);
             },
           ),
         );
