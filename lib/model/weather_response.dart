@@ -112,7 +112,7 @@ class Weather {
 
 class Hourly {
   int? dt;
-  double? temp;
+  num? temp;
   int? pressure;
   int? humidity;
   int? clouds;

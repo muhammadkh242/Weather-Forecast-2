@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather/module/home/home_screen.dart';
 import 'package:weather/weather_layout.dart';
+import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.blue[100],
+            statusBarIconBrightness: Brightness.dark,
+          ),
+
+        )
+      ),
       debugShowCheckedModeBanner: false,
       home: WeatherLayout(),
     );
