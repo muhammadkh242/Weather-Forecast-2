@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:weather/model/weather_response.dart';
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:weather/shared/utils.dart';
 
 Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse) {
   return ConditionalBuilder(
@@ -154,18 +155,24 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse) {
               ),
             ),
           ),
-          const SizedBox(height: 40.0,),
+          const SizedBox(
+            height: 40.0,
+          ),
           SizedBox(
             height: (MediaQuery.of(context).size.height -
                     (AppBar().preferredSize.height) * 3) /
                 5,
             child: ListView.separated(
               itemBuilder: (BuildContext context, index) {
-                return buildHourlyItem();
+                return buildHourlyItem(weatherResponse.hourly![index]);
               },
-              itemCount: 10,
+              itemCount: 20,
               scrollDirection: Axis.horizontal,
-              separatorBuilder: (BuildContext context, int index) { return const SizedBox(width: 10.0,); },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(
+                  width: 10.0,
+                );
+              },
               physics: const BouncingScrollPhysics(),
             ),
           )
@@ -178,10 +185,33 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse) {
   );
 }
 
-Widget buildHourlyItem() {
+Widget buildHourlyItem(Hourly hourly) {
   return Container(
-    height: double.infinity,
-    width: 60.0,
-    color: Colors.grey,
+    decoration: BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+      color: Colors.grey.withOpacity(0.3),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        children: [
+          Text(
+            convertTime(hourly.dt!),
+            style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
+          ),
+          const Expanded(child: SizedBox()),
+          Image(
+            width: 45.0,
+            height: 45.0,
+            image: AssetImage(getHourStateIcon(hourly.weather?[0].main ?? "")),
+          ),
+          const Expanded(child: SizedBox()),
+          Text(
+            hourly.temp!.toInt().toString(),
+            style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
+          ),
+        ],
+      ),
+    ),
   );
 }

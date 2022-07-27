@@ -115,7 +115,6 @@ class Hourly {
   double? temp;
   int? pressure;
   int? humidity;
-  double? dewPoint;
   int? clouds;
   int? visibility;
   num? windSpeed;
@@ -126,7 +125,6 @@ class Hourly {
         this.temp,
         this.pressure,
         this.humidity,
-        this.dewPoint,
         this.clouds,
         this.visibility,
         this.windSpeed,
@@ -138,7 +136,6 @@ class Hourly {
     temp = json['temp'];
     pressure = json['pressure'];
     humidity = json['humidity'];
-    dewPoint = json['dew_point'];
     clouds = json['clouds'];
     visibility = json['visibility'];
     windSpeed = json['wind_speed'];

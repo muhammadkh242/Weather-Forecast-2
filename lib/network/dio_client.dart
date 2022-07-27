@@ -6,7 +6,7 @@ import 'dart:convert';
 class DioClient {
   late Dio dio;
   Map<String, dynamic> queries =  {
-    'units': 'en',
+    'units': 'metric',
     'lat': '61.5240',
     'lon': '105.3188',
     'appid': 'c67c9ddb5f0fa54ea9629f71fd2412d2'
