@@ -86,6 +86,6 @@ class HomeProvider extends ChangeNotifier {
   getAddressFromLatLong(Position position)async {
     List placeMarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placeMarks[0];
-    currentAddress = '${place.administrativeArea}';
+    currentAddress = '${place.locality} ,${place.country}';
   }
 }

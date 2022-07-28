@@ -1,6 +1,6 @@
 class WeatherResponse {
-  double? lat;
-  double? lon;
+  num? lat;
+  num? lon;
   String? timezone;
   int? timezoneOffset;
   Current? current;
@@ -51,12 +51,12 @@ class Current {
   int? dt;
   int? sunrise;
   int? sunset;
-  double? temp;
+  num? temp;
   int? pressure;
   int? humidity;
   int? clouds;
   int? visibility;
-  double? windSpeed;
+  num? windSpeed;
   int? windDeg;
   List<Weather>? weather;
 
@@ -158,7 +158,7 @@ class Daily {
   Temp? temp;
   int? pressure;
   int? humidity;
-  double? windSpeed;
+  num? windSpeed;
   int? windDeg;
   List<Weather>? weather;
   int? clouds;
@@ -201,13 +201,11 @@ class Daily {
 }
 
 class Temp {
-  double? day;
-  double? min;
-  double? max;
-  Temp({this.day, this.min, this.max});
+  num? min;
+  num? max;
+  Temp({this.min, this.max});
 
   Temp.fromJson(Map json) {
-    day = json['day'];
     min = json['min'];
     max = json['max'];
   }

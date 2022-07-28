@@ -31,13 +31,15 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          homeProvider.currentAddress,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14.0),
-                        ),
-                        const Expanded(
-                          child: SizedBox(),
+                        const Icon(Icons.location_on),
+                        Expanded(
+                          child: Text(
+                            homeProvider.currentAddress,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14.0),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
                         ),
                         Text(
                           "${DateFormat('MMMMd').format(DateTime.now())} | ${DateFormat('Hm').format(DateTime.now())}",
