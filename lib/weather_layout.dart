@@ -27,9 +27,6 @@ class WeatherLayout extends StatelessWidget {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.calendar_today_outlined), label: "Home"),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.favorite_border_outlined),
-                    label: "Favorite"),
-                BottomNavigationBarItem(
                     icon: Icon(Icons.settings_applications_outlined),
                     label: "Settings")
               ],

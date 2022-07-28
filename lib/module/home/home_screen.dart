@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           create: (context) => HomeProvider(),
           child: Consumer<HomeProvider>(
             builder: (context, homeProvider, _) {
-              return buildHomeScreen(context, homeProvider.weatherResponse);
+              return buildHomeScreen(context, homeProvider.weatherResponse, homeProvider);
             },
           ),
         );

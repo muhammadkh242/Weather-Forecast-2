@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:weather/model/weather_response.dart';
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:weather/module/home/home_provider.dart';
 import 'package:weather/shared/utils.dart';
+import 'package:intl/intl.dart';
 
-Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse) {
+Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, HomeProvider homeProvider) {
   return ConditionalBuilder(
     condition: weatherResponse.timezoneOffset != null,
     builder: (context) => SingleChildScrollView(
@@ -30,16 +32,16 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse) {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "${weatherResponse.timezone}",
+                          homeProvider.currentAddress,
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18.0),
+                              fontWeight: FontWeight.bold, fontSize: 14.0),
                         ),
                         const Expanded(
                           child: SizedBox(),
                         ),
-                        const Text(
-                          "27 July | 9:38",
-                          style: TextStyle(
+                        Text(
+                          "${DateFormat('MMMMd').format(DateTime.now())} | ${DateFormat('Hm').format(DateTime.now())}",
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18.0),
                         ),
                       ],
@@ -48,10 +50,10 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse) {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Image(
+                        Image(
                           width: 130.0,
                           height: 130.0,
-                          image: AssetImage("assets/images/sun.png"),
+                          image: AssetImage(getWeatherStateIcon(weatherResponse.hourly![0].weather?[0].main ?? "")),
                         ),
                         const Expanded(
                           child: SizedBox(),
@@ -278,7 +280,7 @@ Widget buildDailyItem(Daily daily, BuildContext context){
             width: MediaQuery.of(context).size.width /6,
 
             child: Text(
-              "${daily.temp!.max!.toInt()} / ${daily.temp!.max!.toInt()}",
+              "${daily.temp!.max!.toInt()} / ${daily.temp!.min!.toInt()}",
               style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
             ),
           ),
