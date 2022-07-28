@@ -4,7 +4,6 @@ import 'package:weather/network/dio_client.dart';
 import 'package:weather/repository/repository.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../model/weather_response.dart';
-import 'package:geocode/geocode.dart';
 import 'package:geocoding/geocoding.dart';
 
 class HomeProvider extends ChangeNotifier {
