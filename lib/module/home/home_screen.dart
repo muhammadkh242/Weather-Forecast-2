@@ -10,19 +10,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LayoutProvider>(
-      create: (context) => LayoutProvider(),
-      child: Consumer<LayoutProvider>(
-          builder: (BuildContext context, layoutProvide, _) {
-        return ChangeNotifierProvider<HomeProvider>(
-          create: (context) => HomeProvider(),
-          child: Consumer<HomeProvider>(
-            builder: (context, homeProvider, _) {
-              return buildHomeScreen(context, homeProvider.weatherResponse, homeProvider);
-            },
-          ),
-        );
-      }),
-    );
+    return Consumer<LayoutProvider>(
+        builder: (BuildContext context, layoutProvide, _) {
+      return ChangeNotifierProvider<HomeProvider>(
+        create: (context) => HomeProvider(),
+        child: Consumer<HomeProvider>(
+          builder: (context, homeProvider, _) {
+            return buildHomeScreen(
+                context, homeProvider.weatherResponse, homeProvider);
+          },
+        ),
+      );
+    });
   }
 }

@@ -7,8 +7,8 @@ class WeatherRepo {
 
   WeatherRepo(this.dioClient);
 
-  Future<WeatherResponse> getCurrentWeather({required String lat, required String long}) async {
-    var res =  await dioClient.getCurrentWeather(lat: lat, long: long);
+  Future<WeatherResponse> getCurrentWeather({required String lat, required String long, required String unitSystem}) async {
+    var res =  await dioClient.getCurrentWeather(lat: lat, long: long, unitSystem: unitSystem);
     return WeatherResponse.fromJson(res);
   }
 

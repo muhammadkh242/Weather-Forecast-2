@@ -8,31 +8,27 @@ class WeatherLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LayoutProvider>(
-        create: (context) => LayoutProvider(),
-        child: Consumer<LayoutProvider>(
-            builder: (context, layoutProvider, _) {
-          return Scaffold(
-            backgroundColor: Colors.blue[100],
-            appBar: AppBar(
-              backgroundColor: Colors.blue[100],
-              elevation: 0.0,
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: layoutProvider.bottomNavIndex,
-              onTap: (index) {
-                layoutProvider.navigateBottomNavScreen(index);
-              },
-              items: const [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.calendar_today_outlined), label: "Home"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.settings_applications_outlined),
-                    label: "Settings")
-              ],
-            ),
-            body: layoutProvider.pages[layoutProvider.bottomNavIndex],
-          );
-        }));
+    return Consumer<LayoutProvider>(builder: (context, provider, _) {
+
+      return Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: provider.bottomNavIndex,
+          onTap: (index) {
+            provider.navigateBottomNavScreen(index);
+          },
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_today_outlined), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings_applications_outlined),
+                label: "Settings")
+          ],
+        ),
+        body: provider.pages[provider.bottomNavIndex],
+      );
+    });
   }
 }

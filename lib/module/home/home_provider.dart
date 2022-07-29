@@ -16,6 +16,7 @@ class HomeProvider extends ChangeNotifier {
   late Position position;
   String long = "", lat = "";
   String currentAddress = "";
+  String unitSystem = "metric";
   late StreamSubscription<Position> positionStream;
 
   HomeProvider() {
@@ -23,7 +24,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void getCurrentWeather() {
-    _weatherRepo.getCurrentWeather(lat: lat, long: long).then((value) {
+    _weatherRepo.getCurrentWeather(lat: lat, long: long,unitSystem: unitSystem).then((value) {
       weatherResponse = value;
       notifyListeners();
     });

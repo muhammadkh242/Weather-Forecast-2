@@ -14,9 +14,9 @@ class DioClient {
     ));
   }
 
-  Future<dynamic> getCurrentWeather({required String lat, required String long}) async{
+  Future<dynamic> getCurrentWeather({required String lat, required String long, required String unitSystem}) async{
     Map<String, dynamic> queries =  {
-      'units': 'metric',
+      'units': unitSystem,
       'lat': lat,
       'lon': long,
       'appid': 'c67c9ddb5f0fa54ea9629f71fd2412d2'
