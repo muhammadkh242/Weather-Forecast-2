@@ -86,8 +86,6 @@ class HomeProvider extends ChangeNotifier {
   getLocation() async {
     position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    print("long : ${position.longitude}");
-    print("lat : ${position.latitude}");
 
     long = position.longitude.toString();
     lat = position.latitude.toString();
@@ -112,6 +110,5 @@ class HomeProvider extends ChangeNotifier {
   getAddressFromLatLong(Position position)async {
     List placeMarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placeMarks[0];
-    currentAddress = '${place.locality} ,${place.country}';
   }
 }
