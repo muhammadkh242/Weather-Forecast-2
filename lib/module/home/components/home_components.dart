@@ -290,5 +290,3 @@ Widget buildDailyItem(Daily daily, BuildContext context, HomeProvider provider){
   );
 
 }
-
-//            width: MediaQuery.of(context).size.width /4,
