@@ -72,7 +72,6 @@ class HomeProvider extends ChangeNotifier {
         }
       } else {
         hasPermission = true;
-        print("Location permissions true");
       }
       if (hasPermission) {
         await getLocation();
