@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:weather/model/weather_response.dart';
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:weather/module/home/home_provider.dart';
+import 'package:weather/ui/home/provider/home_provider.dart';
 import 'package:weather/shared/utils.dart';
 import 'package:intl/intl.dart';
 

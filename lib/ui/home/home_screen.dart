@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/layout_provider.dart';
-import 'package:weather/model/weather_response.dart';
-import 'package:weather/module/home/components/home_components.dart';
-import 'package:weather/module/home/home_provider.dart';
+import 'package:weather/main_provider.dart';
+import 'package:weather/ui/home/components/home_components.dart';
+import 'package:weather/ui/home/provider/home_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

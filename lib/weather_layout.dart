@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/layout_provider.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:weather/main_provider.dart';
 
 class WeatherLayout extends StatelessWidget {
   const WeatherLayout({Key? key}) : super(key: key);

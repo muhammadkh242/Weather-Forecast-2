@@ -4,7 +4,7 @@ import 'package:weather/network/dio_client.dart';
 import 'package:weather/repository/repository.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather/shared/constants.dart';
-import '../../model/weather_response.dart';
+import '../../../model/weather_response.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
