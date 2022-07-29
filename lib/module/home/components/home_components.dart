@@ -61,9 +61,9 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
                           child: SizedBox(),
                         ),
                         Text(
-                          "${weatherResponse.current!.temp!.toInt().toString()}°",
+                          "${weatherResponse.current!.temp!.toInt().toString()} ${homeProvider.unitSymbol}",
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 60.0),
+                              fontWeight: FontWeight.bold, fontSize: 50.0),
                         ),
                       ],
                     ),
@@ -111,7 +111,7 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
                               height: 5.0,
                             ),
                             Text(
-                              "${weatherResponse.current!.windSpeed.toString()} km/h",
+                              "${weatherResponse.current!.windSpeed.toString()} mph",
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16.0),
                             ),
@@ -170,7 +170,7 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
                   5,
               child: ListView.separated(
                 itemBuilder: (BuildContext context, index) {
-                  return buildHourlyItem(weatherResponse.hourly![index]);
+                  return buildHourlyItem(weatherResponse.hourly![index], homeProvider);
                 },
                 itemCount: weatherResponse.hourly!.length,
                 scrollDirection: Axis.horizontal,
@@ -189,7 +189,7 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
-                  return buildDailyItem(weatherResponse.daily![index], context);
+                  return buildDailyItem(weatherResponse.daily![index], context, homeProvider);
                 },
                 itemCount: weatherResponse.daily!.length,
                 separatorBuilder: (BuildContext context, int index) {
@@ -209,7 +209,7 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
   );
 }
 
-Widget buildHourlyItem(Hourly hourly) {
+Widget buildHourlyItem(Hourly hourly, HomeProvider provider) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(25.0)),
@@ -231,7 +231,7 @@ Widget buildHourlyItem(Hourly hourly) {
           ),
           const Expanded(child: SizedBox()),
           Text(
-            hourly.temp!.toInt().toString(),
+            "${hourly.temp!.toInt().toString()} ${provider.unitSymbol}",
             style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
           ),
         ],
@@ -240,7 +240,7 @@ Widget buildHourlyItem(Hourly hourly) {
   );
 }
 
-Widget buildDailyItem(Daily daily, BuildContext context){
+Widget buildDailyItem(Daily daily, BuildContext context, HomeProvider provider){
   
   return Container(
     decoration: BoxDecoration(
@@ -278,11 +278,9 @@ Widget buildDailyItem(Daily daily, BuildContext context){
           const Expanded(
             child: SizedBox(),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width /6,
-
+          Expanded(
             child: Text(
-              "${daily.temp!.max!.toInt()} / ${daily.temp!.min!.toInt()}",
+              "${daily.temp!.max!.toInt()} / ${daily.temp!.min!.toInt()} ${provider.unitSymbol}",
               style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
             ),
           ),
@@ -292,3 +290,5 @@ Widget buildDailyItem(Daily daily, BuildContext context){
   );
 
 }
+
+//            width: MediaQuery.of(context).size.width /4,

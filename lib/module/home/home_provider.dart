@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:weather/network/dio_client.dart';
 import 'package:weather/repository/repository.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weather/shared/constants.dart';
 import '../../model/weather_response.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
 class HomeProvider extends ChangeNotifier {
   final WeatherRepo _weatherRepo = WeatherRepo(DioClient());
@@ -16,7 +18,8 @@ class HomeProvider extends ChangeNotifier {
   late Position position;
   String long = "", lat = "";
   String currentAddress = "";
-  String unitSystem = "metric";
+  int unitIndex = Settings.getValue(keyUnits, 1);
+  String unitSymbol = "°C";
   late StreamSubscription<Position> positionStream;
 
   HomeProvider() {
@@ -24,10 +27,33 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void getCurrentWeather() {
-    _weatherRepo.getCurrentWeather(lat: lat, long: long,unitSystem: unitSystem).then((value) {
+    print(getUnit());
+    _weatherRepo.getCurrentWeather(lat: lat, long: long,unitSystem: getUnit()).then((value) {
       weatherResponse = value;
       notifyListeners();
     });
+  }
+
+  String getUnit(){
+    String unit = "";
+    switch (unitIndex) {
+      case 3:
+
+        unit = "standard";
+        unitSymbol = "°K";
+        break;
+      case 2:
+        unit = "imperial";
+        unitSymbol = "°F";
+
+        break;
+      default:
+        unit = "metric";
+        unitSymbol = "°C";
+
+        break;
+    }
+    return unit;
   }
 
   checkGps() async {
