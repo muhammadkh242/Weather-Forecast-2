@@ -7,6 +7,7 @@ displays the weather info to device location
 - Provider.
 - Dio.
 - flutter_settings_screens
+- geolocator
 
 ## Screens
 
