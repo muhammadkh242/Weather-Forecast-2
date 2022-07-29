@@ -267,22 +267,16 @@ Widget buildDailyItem(Daily daily, BuildContext context, HomeProvider provider){
             child: SizedBox(
             ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width /6,
-
-            child: Image(
-              width: 45.0,
-              height: 45.0,
-              image: AssetImage(getWeatherStateIcon(daily.weather?[0].description ?? ""))),
-          ),
+          Image(
+            width: 45.0,
+            height: 45.0,
+            image: AssetImage(getWeatherStateIcon(daily.weather?[0].description ?? ""))),
           const Expanded(
             child: SizedBox(),
           ),
-          Expanded(
-            child: Text(
-              "${daily.temp!.max!.toInt()} / ${daily.temp!.min!.toInt()} ${provider.unitSymbol}",
-              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
-            ),
+          Text(
+            "${daily.temp!.max!.toInt()} / ${daily.temp!.min!.toInt()} ${provider.unitSymbol}",
+            style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
           ),
         ],
       ),
@@ -290,3 +284,4 @@ Widget buildDailyItem(Daily daily, BuildContext context, HomeProvider provider){
   );
 
 }
+//            width: MediaQuery.of(context).size.width /6,
