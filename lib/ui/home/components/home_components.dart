@@ -6,7 +6,8 @@ import 'package:weather/ui/home/provider/home_provider.dart';
 import 'package:weather/shared/utils.dart';
 import 'package:intl/intl.dart';
 
-Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, HomeProvider homeProvider) {
+Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse,
+    HomeProvider homeProvider) {
   return ConditionalBuilder(
     condition: weatherResponse.timezoneOffset != null,
     builder: (context) => SingleChildScrollView(
@@ -53,9 +54,15 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image(
-                          width: 130.0,
-                          height: 130.0,
-                          image: AssetImage(getWeatherStateIcon(weatherResponse.hourly![0].weather?[0].main ?? "")),
+                          width: 120.0,
+                          height: 120.0,
+                          image: AssetImage(getWeatherStateIcon(
+                              state:
+                                  weatherResponse.hourly![0].weather?[0].main ??
+                                      "",
+                              fromHour: true,
+                              timeInMilliseconds:
+                                  weatherResponse.hourly![0].dt!)),
                         ),
                         const Expanded(
                           child: SizedBox(),
@@ -170,7 +177,8 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
                   5,
               child: ListView.separated(
                 itemBuilder: (BuildContext context, index) {
-                  return buildHourlyItem(weatherResponse.hourly![index], homeProvider);
+                  return buildHourlyItem(
+                      weatherResponse.hourly![index], homeProvider);
                 },
                 itemCount: weatherResponse.hourly!.length,
                 scrollDirection: Axis.horizontal,
@@ -188,17 +196,17 @@ Widget buildHomeScreen(BuildContext context, WeatherResponse weatherResponse, Ho
             ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-                itemBuilder: (BuildContext context, index) {
-                  return buildDailyItem(weatherResponse.daily![index], context, homeProvider);
-                },
-                itemCount: weatherResponse.daily!.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(
-                    height: 10.0,
-                  );
-                },
+              itemBuilder: (BuildContext context, index) {
+                return buildDailyItem(
+                    weatherResponse.daily![index], context, homeProvider);
+              },
+              itemCount: weatherResponse.daily!.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(
+                  height: 10.0,
+                );
+              },
             )
-
           ],
         ),
       ),
@@ -225,9 +233,12 @@ Widget buildHourlyItem(Hourly hourly, HomeProvider provider) {
           ),
           const Expanded(child: SizedBox()),
           Image(
-            width: 45.0,
-            height: 45.0,
-            image: AssetImage(getWeatherStateIcon(hourly.weather?[0].main ?? "")),
+            width: 40.0,
+            height: 40.0,
+            image: AssetImage(getWeatherStateIcon(
+                state: hourly.weather?[0].main ?? "",
+                fromHour: true,
+                timeInMilliseconds: hourly.dt!)),
           ),
           const Expanded(child: SizedBox()),
           Text(
@@ -240,14 +251,13 @@ Widget buildHourlyItem(Hourly hourly, HomeProvider provider) {
   );
 }
 
-Widget buildDailyItem(Daily daily, BuildContext context, HomeProvider provider){
-  
+Widget buildDailyItem(
+    Daily daily, BuildContext context, HomeProvider provider) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(22.0)),
       color: Colors.white.withOpacity(0.4),
     ),
-
     child: Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 8.0,
@@ -256,21 +266,23 @@ Widget buildDailyItem(Daily daily, BuildContext context, HomeProvider provider){
       child: Row(
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width /8,
-
+            width: MediaQuery.of(context).size.width / 8,
             child: Text(
               convertDay(daily.dt!),
-              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w400, fontSize: 16.0),
             ),
           ),
           const Expanded(
-            child: SizedBox(
-            ),
+            child: SizedBox(),
           ),
           Image(
-            width: 45.0,
-            height: 45.0,
-            image: AssetImage(getWeatherStateIcon(daily.weather?[0].description ?? ""))),
+              width: 45.0,
+              height: 45.0,
+              image: AssetImage(getWeatherStateIcon(
+                  state: daily.weather?[0].description ?? "",
+                  fromHour: false,
+                  timeInMilliseconds: daily.dt!))),
           const Expanded(
             child: SizedBox(),
           ),
@@ -282,6 +294,5 @@ Widget buildDailyItem(Daily daily, BuildContext context, HomeProvider provider){
       ),
     ),
   );
-
 }
 //            width: MediaQuery.of(context).size.width /6,
