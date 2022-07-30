@@ -11,10 +11,15 @@ displays the weather info to device location
 
 ## Screens
 
-<img src="https://user-images.githubusercontent.com/66799646/180768406-b1be59d3-2fb8-49c8-9565-83ffc98a8f42.png" height="640" width="288">
-<img src="https://user-images.githubusercontent.com/66799646/180768416-206d5da9-42e4-49da-a82c-7bf18ade28ce.png" height="640" width="288">
+<img src="https://user-images.githubusercontent.com/66799646/181861839-f286f53f-1e33-4489-a8f7-e2c3463fb389.jpeg" height="640" width="288">
 
-<img src="https://user-images.githubusercontent.com/66799646/180768428-c15d3b22-e58d-4aba-aabc-d88223f55917.png" height="640" width="288">
+<img src="https://user-images.githubusercontent.com/66799646/181861840-9ed2acb2-c9ff-487c-b26e-f56b1716b401.jpeg" height="640" width="288">
+
+<img src="https://user-images.githubusercontent.com/66799646/181861833-7175088b-7af5-4041-8ac5-6362d403d678.jpeg" height="640" width="288">
+
+<img src="https://user-images.githubusercontent.com/66799646/181861841-13b1d65a-ce53-4ac2-a70d-35ac9c36951d.jpeg" height="640" width="288">
+
+
 
 ## openwathermap API
 https://openweathermap.org/api/
