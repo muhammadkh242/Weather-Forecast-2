@@ -295,4 +295,3 @@ Widget buildDailyItem(
     ),
   );
 }
-//            width: MediaQuery.of(context).size.width /6,

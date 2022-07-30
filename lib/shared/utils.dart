@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 String convertTime(int timeInMilliseconds) {
   DateTime time =
       DateTime.fromMillisecondsSinceEpoch(timeInMilliseconds * 1000);
-  print("time from convert ${TimeOfDay.fromDateTime(time).period.name}");
   return DateFormat("HH:mm").format(time);
 }
 
