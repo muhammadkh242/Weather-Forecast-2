@@ -1,6 +1,6 @@
 # Weather App
 Simple cross-platform mobile application built with Flutter.
-displays the weather info to device location
+displays the weather info for device location
 
 ## Tools
 
